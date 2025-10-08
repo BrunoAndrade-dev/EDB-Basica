@@ -23,7 +23,7 @@ Lista insere (Lista*list , int valor){
 //Listando valores
 void listar (Lista*list) {
     if (isempty){
-        printf ("\n lista está vazia") ;
+        printf ("\n lista estÃ¡ vazia") ;
         return ;
     }
     Lista *aux = list ;
@@ -46,7 +46,7 @@ int buscar (Lista *list ,int v) {
     return 0 // Nao encontrado
 
 }
-//forma alternativa de implementar a função busca utilizando for
+//forma alternativa de implementar a funÃ§Ã£o busca utilizando for
 // Lista *busca (Lista*list , int v ){
     //Lista *aux ;
     //for (aux = list ; aux != NULL ; aux = aux -> next){
@@ -54,7 +54,7 @@ int buscar (Lista *list ,int v) {
            // return aux ;
         //}
     //}
-    //return  NULL ; se não for encontrado
+    //return  NULL ; se nÃ£o for encontrado
 //}
 //Main
 int main(){
@@ -62,3 +62,5 @@ int main(){
     mylista = insere(mylista , 10);
     mylista = insere(mylista , 3 );
     listar (mylista) ;
+    
+
