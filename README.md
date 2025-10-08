@@ -1,2 +1,2 @@
-# EDB Básica
+# Estrutura de Dados Básica
 Primeiro repositório
