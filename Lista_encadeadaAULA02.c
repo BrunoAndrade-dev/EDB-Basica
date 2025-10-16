@@ -115,6 +115,40 @@ Lista *retirar (Lista *list , int v) {
     free(p);
     return list;
 }
+
+//Função maior valor da lista
+
+Lista*Maior_Valor (Lista *list ){
+    Lista *Mvalor=NULL;
+    if (isempty(list)){
+        printf("\nNULL");
+        return 0 ;
+    }
+    Lista *p;
+    Mvalor = list;
+    for (p=list->next ; p!=NULL; p=p->next){
+        if (p->info >Mvalor-> info) {
+            Mvalor = p;
+        }
+    }
+    printf("\nOmaior valor da lista é ");
+    return Mvalor ;
+}
+
+//  Função Recursiva de Maior valor
+Lista *obterMaiorvaloR (Lista *list){
+    if(list==NULL || list->next==NULL ){
+        return list ;
+    }
+    Lista*maiorValor = obterMaiorvaloR(list->next);
+    if(list->info >maiorValor->info){
+        return list ;
+    }else{
+        return maiorValor;
+    }
+
+}
+
 //Liberar a lista
 Lista* liberar(Lista *list){
     Lista *p=list ;
@@ -138,11 +172,12 @@ int main(){
 
     printf("\nContagem: %d ns.\n", contagem(mylista));
 
-    if (busca(mylista, 3) != NULL) {
+    if (buscaR(mylista, 3) != NULL) {
         printf("\nValor 3 encontrado.\n");
     }
 
-
+    Maior_Valor(mylista);
+    obterMaiorvaloR(mylista);
     mylista = retirar(mylista, 3);
     printf("\nAps remover o 3:\n");
     listar(mylista);
