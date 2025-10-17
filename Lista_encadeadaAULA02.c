@@ -116,39 +116,20 @@ Lista *retirar (Lista *list , int v) {
     return list;
 }
 
-//Função maior valor da lista
-
-Lista*Maior_Valor (Lista *list ){
-    Lista *Mvalor=NULL;
-    if (isempty(list)){
-        printf("\nNULL");
-        return 0 ;
+//Revertendo Lista de modo iterativo
+Lista*reverter(Lista*list){
+    Lista*anterior = NULL;
+    Lista*atual = list ;
+    Lista*proximo=NULL ;
+    while (atual!=NULL){
+        proximo = atual->next ;
+        atual->next = anterior ;
+        anterior=atual ;
+        atual = proximo;
     }
-    Lista *p;
-    Mvalor = list;
-    for (p=list->next ; p!=NULL; p=p->next){
-        if (p->info >Mvalor-> info) {
-            Mvalor = p;
-        }
-    }
-    printf("\nOmaior valor da lista é ");
-    return Mvalor ;
+    printf("LISTA INVERTIDA : ");
+    return anterior;
 }
-
-//  Função Recursiva de Maior valor
-Lista *obterMaiorvaloR (Lista *list){
-    if(list==NULL || list->next==NULL ){
-        return list ;
-    }
-    Lista*maiorValor = obterMaiorvaloR(list->next);
-    if(list->info >maiorValor->info){
-        return list ;
-    }else{
-        return maiorValor;
-    }
-
-}
-
 //Liberar a lista
 Lista* liberar(Lista *list){
     Lista *p=list ;
@@ -163,6 +144,7 @@ int main(){
     Lista *mylista = createList();
     mylista = insere(mylista , 10);
     mylista = insere(mylista , 3 );
+    mylista = insere(mylista , 8) ;
     listar (mylista) ;
     printf("Lista Iterativa:\n");
     listar(mylista) ;
@@ -176,10 +158,11 @@ int main(){
         printf("\nValor 3 encontrado.\n");
     }
 
-    Maior_Valor(mylista);
-    obterMaiorvaloR(mylista);
+    Lista *novacabeca = reverter(mylista) ;
+    printf("Lista invertida") ;
+    listar(novacabeca);
     mylista = retirar(mylista, 3);
-    printf("\nAps remover o 3:\n");
+    printf("\n Aps remover o 3:\n");
     listar(mylista);
 
 
