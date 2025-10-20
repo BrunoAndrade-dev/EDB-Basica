@@ -37,10 +37,10 @@ void listar (Lista*list) {
 // implementando a funcção LISTAR de forma recursiva
 void listar2(Lista *list){
     if (list ==NULL){
-        printf ("\n Lista vazia");
+        printf ("NULL");
         return ;
     }
-    printf ("%d", list-> info ) ;
+    printf ("%d ->", list-> info ) ;
     listar2 (list ->next);
 }
 
@@ -130,6 +130,25 @@ Lista*reverter(Lista*list){
     printf("LISTA INVERTIDA : ");
     return anterior;
 }
+
+// Função remover nós duplicados
+Lista *removerNO (Lista *topo){
+    if (topo==NULL){
+        return 0 ;
+    }
+    Lista *duplicado = topo ;
+
+    while (duplicado != NULL && duplicado->next!= NULL){
+        if (duplicado -> info == duplicado -> next-> info) {
+            Lista *guardarduplicada = duplicado->next;
+            duplicado->next = guardarduplicada->next;
+            free(guardarduplicada);
+        }else {
+            duplicado = duplicado ->next ;
+        }
+    }
+
+}
 //Liberar a lista
 Lista* liberar(Lista *list){
     Lista *p=list ;
@@ -143,8 +162,8 @@ Lista* liberar(Lista *list){
 int main(){
     Lista *mylista = createList();
     mylista = insere(mylista , 10);
-    mylista = insere(mylista , 3 );
-    mylista = insere(mylista , 8) ;
+    mylista = insere(mylista , 10);
+    mylista = insere(mylista , 3) ;
     listar (mylista) ;
     printf("Lista Iterativa:\n");
     listar(mylista) ;
@@ -153,6 +172,11 @@ int main(){
     listar2(mylista);
 
     printf("\nContagem: %d ns.\n", contagem(mylista));
+
+    printf ("\n Removendo duplicatas....");
+    mylista = removerNO(mylista);
+    printf("A nova lista é :  ");
+    listar2(mylista);
 
     if (buscaR(mylista, 3) != NULL) {
         printf("\nValor 3 encontrado.\n");
