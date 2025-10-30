@@ -82,7 +82,7 @@ Lista *retirar (Lista *list , int v) {
     if (p==NULL){
         return list; // Não encontrou o elemento
     }
-    
+
     // O nó p é o nó a ser removido
     if (ant == NULL){
         // Remover o primeiro nó
@@ -116,9 +116,9 @@ Lista *removerNO (Lista *topo){
     if (topo == NULL) {
         return NULL;
     }
-    
+
     Lista *atual = topo;
-    
+
     // Percorre a lista com o ponteiro 'atual'
     while (atual != NULL) {
         Lista *corrente = atual;
@@ -147,7 +147,7 @@ Lista *intercalar (Lista *l1, Lista *l2) {
     Lista *aux1 = l1;
     Lista *aux2 = l2;
     Lista *ultimo = NULL; // Ponteiro para o último nó da l3
-    
+
     while (aux1 != NULL || aux2 != NULL) {
         // Se houver elemento em l1, insere-o na l3
         if (aux1 != NULL) {
@@ -156,21 +156,21 @@ Lista *intercalar (Lista *l1, Lista *l2) {
             if (novo == NULL) {
                 printf("Erro de alocacao de memoria!\n");
                 // Em um cenário real, você faria uma limpeza ou tratamento de erro mais robusto.
-                exit(1); 
+                exit(1);
             }
             novo->info = aux1->info;
             novo->next = NULL;
-            
+
             if (l3 == NULL) {
                 l3 = novo; // Primeiro nó da nova lista
             } else {
                 ultimo->next = novo; // Anexa ao final da nova lista
             }
             ultimo = novo; // Atualiza o último nó
-            
+
             aux1 = aux1->next; // Avança l1
         }
-        
+
         // Se houver elemento em l2, insere-o na l3
         if (aux2 != NULL) {
             // Cria novo nó com o valor de aux2->info
@@ -181,22 +181,52 @@ Lista *intercalar (Lista *l1, Lista *l2) {
             }
             novo->info = aux2->info;
             novo->next = NULL;
-            
+
             if (l3 == NULL) {
                 l3 = novo; // Este caso deve ser raro se l1 não for nula, mas é seguro
             } else {
                 ultimo->next = novo; // Anexa ao final da nova lista
             }
             ultimo = novo; // Atualiza o último nó
-            
+
             aux2 = aux2->next; // Avança l2
         }
     }
-    
+    while(l1!=NULL && l2=! NULL){
+        fim = l1 ->next ; 
+        l1 = l1->next ; 
+        fim = fim -> next ; 
+    }
+
     return l3;
 }
-
-
+ /*
+ 
+ Outra forma de intercalar 
+ Lista *intercalar(Lista *l1 , Lista * l2){
+    Lista inicio;
+    Lista *fim = &incio ;
+    inicio ->next = NULL ;
+    while (l1!=NULL && l2 != NULL){
+        fim->next = l1 ; 
+        l1 = l1->next ; 
+        fim = fim -> next ; 
+        fim ->next = l2 ;
+        l2 = l2->next;
+        fim = fim-> next ; 
+    }
+    if (l1!= NULL ){
+        fim->next = l1 ; 
+    }
+    if (l2!= NULL) {
+        fim->next = l2 ; 
+    }
+    return inicio -> prox
+    
+ }
+ 
+ 
+ */
 // Liberar a lista
 Lista* liberar(Lista *list){
     Lista *p=list ;
@@ -216,7 +246,7 @@ int main(){
     mylista = insere(mylista , 20); // Valor adicionado para ter mais um elemento
     mylista = insere(mylista , 10);
     mylista = insere(mylista , 3) ;
-    
+
     printf("Lista Inicial:\n");
     listar (mylista) ;
 
@@ -238,13 +268,13 @@ int main(){
     } else {
          printf("\nValor 3 nao encontrado.\n");
     }
-    
+
     // Testando a função de intercale
     Lista *listA = createList();
     listA = insere(listA, 5);
     listA = insere(listA, 3);
     listA = insere(listA, 1);
-    
+
     Lista *listB = createList();
     listB = insere(listB, 6);
     listB = insere(listB, 4);
@@ -256,11 +286,11 @@ int main(){
     listar(listA);
     printf("\nLista B: ");
     listar(listB);
-    
+
     Lista *listC = intercalar(listA, listB);
     printf("\nLista Intercalada (C): ");
     listar(listC);
-    
+
     // Continuacao do teste original
     Lista *novacabeca = reverter(mylista) ;
     printf("\nLista invertida: ");
@@ -270,13 +300,13 @@ int main(){
     mylista = retirar(mylista, 3);
     printf("\n\nApós remover o 3:\n");
     listar(mylista);
-    
+
     // Liberar todas as listas
     mylista = liberar(mylista);
     listA = liberar(listA);
     listB = liberar(listB);
     listC = liberar(listC);
-    
+
     printf("\nTodas as listas liberadas.\n");
 
     return 0 ;
