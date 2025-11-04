@@ -193,40 +193,56 @@ Lista *intercalar (Lista *l1, Lista *l2) {
         }
     }
     while(l1!=NULL && l2=! NULL){
-        fim = l1 ->next ; 
-        l1 = l1->next ; 
-        fim = fim -> next ; 
+        fim = l1 ->next ;
+        l1 = l1->next ;
+        fim = fim -> next ;
     }
 
     return l3;
 }
  /*
- 
- Outra forma de intercalar 
+
+ Outra forma de intercalar
  Lista *intercalar(Lista *l1 , Lista * l2){
     Lista inicio;
     Lista *fim = &incio ;
     inicio ->next = NULL ;
     while (l1!=NULL && l2 != NULL){
-        fim->next = l1 ; 
-        l1 = l1->next ; 
-        fim = fim -> next ; 
+        fim->next = l1 ;
+        l1 = l1->next ;
+        fim = fim -> next ;
         fim ->next = l2 ;
         l2 = l2->next;
-        fim = fim-> next ; 
+        fim = fim-> next ;
     }
     if (l1!= NULL ){
-        fim->next = l1 ; 
+        fim->next = l1 ;
     }
     if (l2!= NULL) {
-        fim->next = l2 ; 
+        fim->next = l2 ;
     }
     return inicio -> prox
-    
+
  }
- 
- 
+
+
  */
+ // Função verificar se duas listas estão iguais
+ int isIgual (Lista *l1 , Lista *l2){
+    while (l1!= NULL && l2!=NULL){
+        if (l1->info != l2->info){
+            return 0 ; 
+        }
+    }
+    l1 = l1-> next ; 
+    l2 = l2-> next ; 
+    if (l2 ==NULL && l1 == NULL) {
+        return 1 ; // VERDADEIRO,OU SEJA, SÃO IGUAIS
+    }
+    else{
+        return 0 ; // FALSE,OU SEJA, N SÃO IGUAIS
+    }
+ }
 // Liberar a lista
 Lista* liberar(Lista *list){
     Lista *p=list ;
