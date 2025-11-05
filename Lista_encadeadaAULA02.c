@@ -16,7 +16,7 @@ int isempty (Lista *list) {
     return list == NULL ;
 }
 
-// INSERINDO ELEMENTOS NO INÍCIO DA LISTA
+// INSERINDO ELEMENTOS NO INï¿½CIO DA LISTA
 Lista* insere (Lista*list , int valor){
     Lista *novo = (Lista*)malloc(sizeof(Lista));
     if (novo == NULL) {
@@ -42,7 +42,7 @@ void listar (Lista*list) {
     printf ("NULL") ;
 }
 
-// Implementando a função LISTAR de forma recursiva
+// Implementando a funï¿½ï¿½o LISTAR de forma recursiva
 void listar2(Lista *list){
     if (list ==NULL){
         printf ("NULL");
@@ -60,10 +60,10 @@ int contagem (Lista *list){
     return 1 + contagem(list->next) ;
 }
 
-// Função Busca de forma recursiva
+// Funï¿½ï¿½o Busca de forma recursiva
 Lista*buscaR(Lista *list , int v){
     if (list ==NULL) {
-        return NULL ; // Alterado para retornar NULL em caso de não encontrado
+        return NULL ; // Alterado para retornar NULL em caso de nï¿½o encontrado
     }
     if (list ->info ==v){
         return list ;
@@ -74,21 +74,21 @@ Lista*buscaR(Lista *list , int v){
 
 Lista *retirar (Lista *list , int v) {
     Lista *ant = NULL ;
-    Lista *p = list; //list aponta para o primeiro nó da lista
+    Lista *p = list; //list aponta para o primeiro nï¿½ da lista
     while (p!=NULL && p->info != v){
         ant = p;
         p= p->next ;
     }
     if (p==NULL){
-        return list; // Não encontrou o elemento
+        return list; // Nï¿½o encontrou o elemento
     }
 
-    // O nó p é o nó a ser removido
+    // O nï¿½ p ï¿½ o nï¿½ a ser removido
     if (ant == NULL){
-        // Remover o primeiro nó
+        // Remover o primeiro nï¿½
         list = p->next;
     } else {
-        // Remover nó do meio ou fim
+        // Remover nï¿½ do meio ou fim
         ant ->next = p-> next;
     }
 
@@ -107,11 +107,11 @@ Lista*reverter(Lista*list){
         anterior=atual ;
         atual = proximo;
     }
-    // O novo início é 'anterior'
+    // O novo inï¿½cio ï¿½ 'anterior'
     return anterior;
 }
 
-// Função remover nós duplicados (assume que a lista não está necessariamente ordenada)
+// Funï¿½ï¿½o remover nï¿½s duplicados (assume que a lista nï¿½o estï¿½ necessariamente ordenada)
 Lista *removerNO (Lista *topo){
     if (topo == NULL) {
         return NULL;
@@ -125,55 +125,55 @@ Lista *removerNO (Lista *topo){
         // Percorre o resto da lista com 'corrente' para verificar duplicatas
         while (corrente->next != NULL) {
             if (atual->info == corrente->next->info) {
-                // Encontrou duplicata: o nó a ser removido é corrente->next
+                // Encontrou duplicata: o nï¿½ a ser removido ï¿½ corrente->next
                 Lista *guardarduplicada = corrente->next;
                 corrente->next = guardarduplicada->next;
                 free(guardarduplicada);
             } else {
-                // Não é duplicata, avança o ponteiro corrente
+                // Nï¿½o ï¿½ duplicata, avanï¿½a o ponteiro corrente
                 corrente = corrente->next;
             }
         }
-        // Avança para o próximo nó para verificar novas duplicatas
+        // Avanï¿½a para o prï¿½ximo nï¿½ para verificar novas duplicatas
         atual = atual->next;
     }
     return topo; // Retorna o topo da lista
 }
 
-// Função para Intercalar duas listas
+// Funï¿½ï¿½o para Intercalar duas listas
 // Cria uma nova lista com os elementos de l1 e l2 alternadamente.
 Lista *intercalar (Lista *l1, Lista *l2) {
     Lista *l3 = createList(); // Nova lista resultado
     Lista *aux1 = l1;
     Lista *aux2 = l2;
-    Lista *ultimo = NULL; // Ponteiro para o último nó da l3
+    Lista *ultimo = NULL; // Ponteiro para o ï¿½ltimo nï¿½ da l3
 
     while (aux1 != NULL || aux2 != NULL) {
         // Se houver elemento em l1, insere-o na l3
         if (aux1 != NULL) {
-            // Cria novo nó com o valor de aux1->info
+            // Cria novo nï¿½ com o valor de aux1->info
             Lista *novo = (Lista*)malloc(sizeof(Lista));
             if (novo == NULL) {
                 printf("Erro de alocacao de memoria!\n");
-                // Em um cenário real, você faria uma limpeza ou tratamento de erro mais robusto.
+                // Em um cenï¿½rio real, vocï¿½ faria uma limpeza ou tratamento de erro mais robusto.
                 exit(1);
             }
             novo->info = aux1->info;
             novo->next = NULL;
 
             if (l3 == NULL) {
-                l3 = novo; // Primeiro nó da nova lista
+                l3 = novo; // Primeiro nï¿½ da nova lista
             } else {
                 ultimo->next = novo; // Anexa ao final da nova lista
             }
-            ultimo = novo; // Atualiza o último nó
+            ultimo = novo; // Atualiza o ï¿½ltimo nï¿½
 
-            aux1 = aux1->next; // Avança l1
+            aux1 = aux1->next; // Avanï¿½a l1
         }
 
         // Se houver elemento em l2, insere-o na l3
         if (aux2 != NULL) {
-            // Cria novo nó com o valor de aux2->info
+            // Cria novo nï¿½ com o valor de aux2->info
             Lista *novo = (Lista*)malloc(sizeof(Lista));
             if (novo == NULL) {
                 printf("Erro de alocacao de memoria!\n");
@@ -183,13 +183,13 @@ Lista *intercalar (Lista *l1, Lista *l2) {
             novo->next = NULL;
 
             if (l3 == NULL) {
-                l3 = novo; // Este caso deve ser raro se l1 não for nula, mas é seguro
+                l3 = novo; // Este caso deve ser raro se l1 nï¿½o for nula, mas ï¿½ seguro
             } else {
                 ultimo->next = novo; // Anexa ao final da nova lista
             }
-            ultimo = novo; // Atualiza o último nó
+            ultimo = novo; // Atualiza o ï¿½ltimo nï¿½
 
-            aux2 = aux2->next; // Avança l2
+            aux2 = aux2->next; // Avanï¿½a l2
         }
     }
     while(l1!=NULL && l2=! NULL){
@@ -227,7 +227,7 @@ Lista *intercalar (Lista *l1, Lista *l2) {
 
 
  */
- // Função verificar se duas listas estão iguais
+ // Funï¿½ï¿½o verificar se duas listas estï¿½o iguais
  int isIgual (Lista *l1 , Lista *l2){
     while (l1!= NULL && l2!=NULL){
         if (l1->info != l2->info){
@@ -237,10 +237,10 @@ Lista *intercalar (Lista *l1, Lista *l2) {
     l1 = l1-> next ;
     l2 = l2-> next ;
     if (l2 ==NULL && l1 == NULL) {
-        return 1 ; // VERDADEIRO,OU SEJA, SÃO IGUAIS
+        return 1 ; // VERDADEIRO,OU SEJA, Sï¿½O IGUAIS
     }
     else{
-        return 0 ; // FALSE,OU SEJA, N SÃO IGUAIS
+        return 0 ; // FALSE,OU SEJA, N Sï¿½O IGUAIS
     }
  }
 // Liberar a lista
@@ -251,12 +251,12 @@ Lista* liberar(Lista *list){
         free(p);
         p=list;
     }
-    return NULL; // Retorna NULL para indicar que a lista está vazia
+    return NULL; // Retorna NULL para indicar que a lista estï¿½ vazia
 }
 
 // Main
 int main(){
-    // Teste original (adaptado para os ajustes e correção de bugs na função 'removerNO' e 'buscaR')
+    // Teste original (adaptado para os ajustes e correï¿½ï¿½o de bugs na funï¿½ï¿½o 'removerNO' e 'buscaR')
     Lista *mylista = createList();
     mylista = insere(mylista , 10);
     mylista = insere(mylista , 20); // Valor adicionado para ter mais um elemento
@@ -275,8 +275,8 @@ int main(){
     printf("\nContagem: %d nos.\n", contagem(mylista));
 
     printf ("\nRemovendo duplicatas....");
-    mylista = removerNO(mylista); // A função original tinha um bug no retorno e no loop
-    printf("\nA nova lista (sem duplicatas) é: ");
+    mylista = removerNO(mylista); // A funï¿½ï¿½o original tinha um bug no retorno e no loop
+    printf("\nA nova lista (sem duplicatas) ï¿½: ");
     listar2(mylista);
 
     if (buscaR(mylista, 3) != NULL) {
@@ -285,7 +285,7 @@ int main(){
          printf("\nValor 3 nao encontrado.\n");
     }
 
-    // Testando a função de intercale
+    // Testando a funï¿½ï¿½o de intercale
     Lista *listA = createList();
     listA = insere(listA, 5);
     listA = insere(listA, 3);
@@ -295,7 +295,7 @@ int main(){
     listB = insere(listB, 6);
     listB = insere(listB, 4);
     listB = insere(listB, 2);
-    listB = insere(listB, 0); // L2 é maior
+    listB = insere(listB, 0); // L2 ï¿½ maior
 
     printf("\n\n--- Teste de Intercalacao ---\n");
     printf("Lista A: ");
@@ -311,10 +311,10 @@ int main(){
     Lista *novacabeca = reverter(mylista) ;
     printf("\nLista invertida: ");
     listar(novacabeca); // Imprime a lista invertida
-    mylista = novacabeca; // mylista agora é a lista invertida
+    mylista = novacabeca; // mylista agora ï¿½ a lista invertida
 
     mylista = retirar(mylista, 3);
-    printf("\n\nApós remover o 3:\n");
+    printf("\n\nApï¿½s remover o 3:\n");
     listar(mylista);
 
     // Liberar todas as listas
